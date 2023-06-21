@@ -1,0 +1,50 @@
+root: doc-api
+structure:
+  summary: summary.md
+  assets: assets
+headerIncludes:  |
+  <script>
+function addStyle() {
+  const style = document.createElement('style');
+  style.innerHTML = `
+     @keyframes spin {
+       0% { transform: rotate(0deg); }
+       100% { transform: rotate(360deg); }
+     }
+
+     #loading-spinner {
+       position: fixed;
+       left: 50%;
+       top: 50%;
+       width: 60px;
+       height: 60px;
+       border: 6px solid #f3f3f3; /* Light grey */
+       border-top: 6px solid #3498db; /* Blue */
+       border-radius: 50%;
+       animation: spin 2s linear infinite;
+     }
+  `;
+  document.head.appendChild(style);
+}
+
+
+if (window.checker === undefined) {
+  const content = document.getElementById('__next');
+  content.style.display = 'none';
+
+  addStyle();
+
+  var loadingSpinner = document.createElement('div');
+  loadingSpinner.id = 'loading-spinner';
+
+  document.body.insertBefore(loadingSpinner, content);
+
+  window.checker = true;
+}
+
+window.onload = function () {
+  document.getElementById('loading-spinner').remove();
+  document.getElementById('__next').style.display = 'inherit';
+  document.getElementById(window.location.hash.substring(1)).scrollIntoView();
+};
+  </script> 
