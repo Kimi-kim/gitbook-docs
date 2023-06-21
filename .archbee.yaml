@@ -1,7 +1,7 @@
 root: doc-api
 structure:
   summary: summary.md
-  assets: assets
+  assets: .gitbook/assets
 headerIncludes:  |
   <script>
 function addStyle() {
